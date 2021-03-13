@@ -7,9 +7,8 @@ do
 	addr=${array[1]}
 	inner_addr=${array[2]}
 	inner_port=${array[3]}
-
   # remove the known host
-  ssh-keygen -R [localhost]:$port
-	ssh -Nf -L $port:$inner_addr:$inner_port -i ~/.ssh/keys/xenserver joanna@$addr
+  #ssh-keygen -R [localhost]:$port'
+	ssh -Nf -L $port:$inner_addr:$inner_port -i ~/.ssh/id_rsa joanna@$addr
 done
 ps aux | grep 'ssh -Nf -L'
