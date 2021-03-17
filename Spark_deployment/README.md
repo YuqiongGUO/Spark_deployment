@@ -66,6 +66,8 @@ The following variables should be set correctly:
   * spark_folder_name: the folder of Spark that is extracted from .tar file
   * spark_tar_path: the path of .tar file that will be uploaded to server
 
+  *some directory will need to be manually added during installation process
+
 #### master-port
 Write the **port** (not address) of master in it.
 For example,

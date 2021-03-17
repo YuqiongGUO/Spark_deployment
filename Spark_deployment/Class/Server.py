@@ -101,7 +101,7 @@ class Server:
             print("Installing python3 on port {port}.".format(port=self.__port))
             try:
                 self.__conn.run("sudo -S yum install epel-release -y", watchers=[self.__sudopass], hide=True)
-                self.__conn.run("sudo -S yum install https://centos7.iuscommunity.org/ius-release.rpm -y",
+                self.__conn.run("sudo -S yum install https://repo.ius.io/ius-release-el7.rpm -y",
                                 watchers=[self.__sudopass], hide=True)
             finally:
                 self.__conn.run("sudo -S yum install python36u -y", watchers=[self.__sudopass], hide=True)

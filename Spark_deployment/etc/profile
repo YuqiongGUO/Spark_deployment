@@ -8,7 +8,7 @@
 # /etc/profile.d/ to make custom changes to your environment, as this
 # will prevent the need for merging in future updates.
 
-export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_241
+export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_281
 export SPARK_HOME=/home/spark/opt/module/spark-2.4.5-bin-hadoop2.7
 export HADOOP_HOME=/home/spark/opt/module/hadoop-2.7.7
 export SCALA_HOME=/usr/lib/jvm/scala-2.11.8
