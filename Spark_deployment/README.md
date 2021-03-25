@@ -124,6 +124,17 @@ For example
     hdfs://spark-master:9000/kmeans/1gb.csv  \
     3 20
 
+Using the official standalone example
+    sbin/spark-submit \
+    --class org.apache.spark.examples.SparkPi \
+    --master spark://192.168.122.173:7077  \
+    --conf spark.cores.max=12  \
+    --conf spark.executor.cores=3 \
+    --executor-memory 6g  \
+    --name kmeans-test \
+    /home/spark/opt/module/spark-2.4.5-bin-hadoop2.7/examples/jars/spark-examples_2.11-2.4.5.jar  \
+    3 20
+
 The shell script will call the python script to submit the application and monitor the hardware
 usage of every node in the cluster.
 
