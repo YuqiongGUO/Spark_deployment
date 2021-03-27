@@ -75,7 +75,7 @@ if __name__ == '__main__':
     # for arg in sys.argv[1:]:
     #     args = args + " " + arg
     # job = "bin/spark-submit" + args
-    job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master local --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 10000"
+    job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master local --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 100"
     '''
     job: str = "bin/spark-submit " \
                "--master spark://192.168.122.65:7077 " \

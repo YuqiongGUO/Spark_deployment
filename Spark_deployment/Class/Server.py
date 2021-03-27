@@ -88,7 +88,7 @@ class Server:
                     self.__conn.run('rm -rf ~/opt/monitor', hide=True)
                 except UnexpectedExit:
                     pass
-            self.__conn.run('mv ~/Downloads/{folder_name} ~/opt/monitor'
+            self.__conn.run('mv ~/Downloads/{folder_name} ~/opt/monitor'    
                             .format(folder_name="monitor"), hide=True)
 
     def install_python3(self):

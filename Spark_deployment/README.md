@@ -127,7 +127,7 @@ For example
 Using the official standalone example
     sbin/spark-submit \
     --class org.apache.spark.examples.SparkPi \
-    --master spark://192.168.122.173:7077  \
+    --master spark://192.168.122.57:7077  \
     --conf spark.cores.max=12  \
     --conf spark.executor.cores=3 \
     --executor-memory 6g  \
