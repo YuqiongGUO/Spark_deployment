@@ -126,6 +126,8 @@ class Server:
             java_folder_name = self.__config["java"].get("java_folder_name")
 
             self.ensure_directory("~/Downloads")
+            install_location = JAVA_HOME[:-len(JAVA_HOME.split("/")[-1])]
+            self.ensure_directory(install_location)
 
             pwd = self.__conn.run("pwd", hide=True).stdout.strip()
             self.__conn.put(java_tar_path, "{pwd}/Downloads/jdk8.tar".format(pwd=pwd))
@@ -151,12 +153,14 @@ class Server:
             scala_folder_name = self.__config["scala"].get("scala_folder_name")
 
             self.ensure_directory("~/Downloads")
+            install_location = SCALA_HOME[:-len(SCALA_HOME.split("/")[-1])]
+            self.ensure_directory(install_location)
 
             pwd = self.__conn.run("pwd", hide=True).stdout.strip()
             self.__conn.put(scala_tar_path, "{pwd}/Downloads/scala.tar".format(pwd=pwd))
             self.__conn.run('cd ~/Downloads && tar -xf ~/Downloads/scala.tar')
-            self.__conn.run('sudo -S mv ~/Downloads/{folder_name} {JAVA_HOME}'.format(folder_name=scala_folder_name,
-                                                                                      JAVA_HOME=SCALA_HOME),
+            self.__conn.run('sudo -S mv ~/Downloads/{folder_name} {SCALA_HOME}'.format(folder_name=scala_folder_name,
+                                                                                      SCALA_HOME=SCALA_HOME),
                             watchers=[self.__sudopass], hide=True)
 
             # check scala again
@@ -209,8 +213,8 @@ class Server:
             pwd = self.__conn.run("pwd", hide=True).stdout.strip()
             self.__conn.put(hadoop_tar_path, "{pwd}/Downloads/hadoop.tar".format(pwd=pwd))
             self.__conn.run('cd ~/Downloads && tar -xf ~/Downloads/hadoop.tar')
-            self.__conn.run('sudo -S mv ~/Downloads/{folder_name} {SPARK_HOME}'.format(folder_name=hadoop_folder_name,
-                                                                                       SPARK_HOME=HADOOP_HOME),
+            self.__conn.run('sudo -S mv ~/Downloads/{folder_name} {HADOOP_HOME}'.format(folder_name=hadoop_folder_name,
+                                                                                       HADOOP_HOME=HADOOP_HOME),
                             watchers=[self.__sudopass], hide=True)
 
             # check Hadoop again

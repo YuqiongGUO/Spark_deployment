@@ -48,13 +48,13 @@ def main(job: str):
     for slave in slaves:
         file_path = "{folder_path}/slave{i}.csv".format(folder_path=folder_path, i=i)
         slave.get_connection().get(slave.get_log_path(), file_path)
-        '''array = np.genfromtxt(file_path, delimiter=',')
+        array = np.genfromtxt(file_path, delimiter=',')
         mean_cpu_usage = np.mean(array[:, 1])
         max_cpu_usage = np.max(array[:, 1])
         print("slave{}: {}, {}".format(i, mean_cpu_usage, max_cpu_usage))
         if max_cpu_usage <= 90:
             remove(file_path)
-        i += 1'''
+        i += 1
     master.get_connection().get(master.get_log_path(), "{folder_path}/master.csv".format(folder_path=folder_path,
                                                                                          i=i))
     print("The data files have been put into monitor_data/" + folder_name)
@@ -75,9 +75,10 @@ if __name__ == '__main__':
     # for arg in sys.argv[1:]:
     #     args = args + " " + arg
     # job = "bin/spark-submit" + args
-    job: str = "bin/spark-submit --master local --conf spark.cores.max=20 --conf spark.executor.cores=3 --executor-memory 6g --name test /root/Downloads/kmeans_2.11-0.1.jar /root/Downloads/data/iris.csv 3 20"
+    #job: str = "bin/spark-submit --master local --conf spark.cores.max=18 --conf spark.executor.cores=3 --executor-memory 6g --name test /root/Downloads/kmeans_2.11-0.1.jar /root/Downloads/data/iris.csv 3 20"
     
-    #job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master local --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 100"
+    #job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master local --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 2 20"
+    job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://192.168.122.89:7077 --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 18 100"
     '''
     job: str = "bin/spark-submit " \
                "--master spark://192.168.122.65:7077 " \

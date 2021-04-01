@@ -14,7 +14,7 @@ def main():
         master.install_python3()
         master.install_java()
         master.install_hadoop()
-        # master.install_scala()
+        master.install_scala()
         master.install_spark()
         master.install_monitor(forth=False)
         master.set_slaves()  # set "$SPARK_HOME/conf/slaves" based on local config

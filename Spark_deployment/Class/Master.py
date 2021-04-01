@@ -68,7 +68,7 @@ class Master(Server):
                           "HostName {addr}\n" \
                           "PreferredAuthentications publickey\n" \
                           "IdentityFile ~/.ssh/spark\n" \
-                          "User spark\n\n".format(addr=addr)
+                          "User root\n\n".format(addr=addr)
                 content = content + section
             conf.write(content)
 
