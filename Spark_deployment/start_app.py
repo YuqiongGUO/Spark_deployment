@@ -78,7 +78,15 @@ if __name__ == '__main__':
     #job: str = "bin/spark-submit --master local --conf spark.cores.max=18 --conf spark.executor.cores=3 --executor-memory 6g --name test /root/Downloads/kmeans_2.11-0.1.jar /root/Downloads/data/iris.csv 3 20"
     
     #job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master local --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 2 20"
-    job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://192.168.122.89:7077 --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 18 100"
+    #job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://192.168.122.89:7077 --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 18 100"
+    job: str = "bin/spark-submit " \
+                "--class org.apache.spark.examples.SparkPi  " \
+                "--master spark://jmaster:7077 " \
+                "--conf spark.cores.max=30 " \
+                "--conf spark.executor.cores=3 " \
+                "--executor-memory 6g " \
+                "hdfs://jmaster:9000/test/spark-examples_2.11-2.4.5.jar " \
+                "1000"
     '''
     job: str = "bin/spark-submit " \
                "--master spark://192.168.122.65:7077 " \
