@@ -79,14 +79,24 @@ if __name__ == '__main__':
     
     #job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master local --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 2 20"
     #job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://192.168.122.89:7077 --executor-memory 4g ./examples/jars/spark-examples_2.11-2.4.5.jar 18 100"
+    # job: str = "bin/spark-submit " \
+    #             "--class org.apache.spark.examples.SparkPi  " \
+    #             "--master spark://jmaster:7077 " \
+    #             "--conf spark.cores.max=30 " \
+    #             "--conf spark.executor.cores=3 " \
+    #             "--executor-memory 6g " \
+    #             "hdfs://jmaster:9000/test/spark-examples_2.11-2.4.5.jar " \
+    #             "1000"
     job: str = "bin/spark-submit " \
-                "--class org.apache.spark.examples.SparkPi  " \
-                "--master spark://jmaster:7077 " \
-                "--conf spark.cores.max=30 " \
-                "--conf spark.executor.cores=3 " \
-                "--executor-memory 6g " \
-                "hdfs://jmaster:9000/test/spark-examples_2.11-2.4.5.jar " \
-                "1000"
+               "--class com.alwin.KNN  " \
+               "--master spark://jmaster:7077 " \
+               "--conf spark.cores.max=30 " \
+               "--conf spark.executor.cores=3 " \
+               "--executor-memory 6g " \
+               "/root/Downloads/ScalaSparkKnn-0.0.1-SNAPSHOT.jar " \
+               "hdfs://jmaster:9000/test/smallTrain.txt" \
+               "hdfs://jmaster:9000/test/smallTrain.txt" \
+               "5"
     '''
     job: str = "bin/spark-submit " \
                "--master spark://192.168.122.65:7077 " \
