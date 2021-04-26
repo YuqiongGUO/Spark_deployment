@@ -87,16 +87,46 @@ if __name__ == '__main__':
     #             "--executor-memory 6g " \
     #             "hdfs://jmaster:9000/test/spark-examples_2.11-2.4.5.jar " \
     #             "1000"
+    # below not works
+    # job: str = "bin/spark-submit " \
+    #            "--class com.alwin.KNN  " \
+    #            "--master spark://jmaster:7077 " \
+    #            "--conf spark.cores.max=30 " \
+    #            "--conf spark.executor.cores=3 " \
+    #            "--executor-memory 6g " \
+    #            "hdfs://jmaster:9000/test/knn-spark_2.12-0.1.0-SNAPSHOT.jar " \
+    #            "hdfs://jmaster:9000/test/smallTrain.txt " \
+    #            "3 100"
+    # below works fine
+    # job: str = "bin/spark-submit " \
+    #             "--class SparkKnn " \
+    #             "--master spark://jmaster:7077 " \
+    #             "--conf spark.cores.max=30 " \
+    #             "--conf spark.executor.cores=3 " \
+    #             "--executor-memory 6g " \
+    #             "hdfs://jmaster:9000/test/sparkknn_2.11-1.0.jar " \
+    #             "hdfs://jmaster:9000/test/medium.arff " \
+    #             "3 10"
+    # testing
     job: str = "bin/spark-submit " \
-               "--class com.alwin.KNN  " \
-               "--master spark://jmaster:7077 " \
-               "--conf spark.cores.max=30 " \
-               "--conf spark.executor.cores=3 " \
-               "--executor-memory 6g " \
-               "/root/Downloads/ScalaSparkKnn-0.0.1-SNAPSHOT.jar " \
-               "hdfs://jmaster:9000/test/smallTrain.txt" \
-               "hdfs://jmaster:9000/test/smallTrain.txt" \
-               "5"
+                "--class Spark_Knn " \
+                "--master spark://jmaster:7077 " \
+                "--conf spark.cores.max=30 " \
+                "--conf spark.executor.cores=3 " \
+                "--executor-memory 8g " \
+                "hdfs://jmaster:9000/test/spark_knn_2.11-1.0.jar " \
+                "hdfs://jmaster:9000/test/small5040.csv " \
+                "3"
+                # small336.csv
+                # small369.csv
+                # small402.csv
+                # small436.csv
+                # medium4898.csv
+                # medium5388.csv
+                # medium5878.csv
+                # medium6368.csv
+                # large19591.csv
+                # small4368
     '''
     job: str = "bin/spark-submit " \
                "--master spark://192.168.122.65:7077 " \
