@@ -107,16 +107,16 @@ if __name__ == '__main__':
     #             "hdfs://jmaster:9000/test/sparkknn_2.11-1.0.jar " \
     #             "hdfs://jmaster:9000/test/medium.arff " \
     #             "3 10"
-    # testing
-    job: str = "bin/spark-submit " \
-                "--class Spark_Knn " \
-                "--master spark://jmaster:7077 " \
-                "--conf spark.cores.max=30 " \
-                "--conf spark.executor.cores=3 " \
-                "--executor-memory 8g " \
-                "hdfs://jmaster:9000/test/spark_knn_2.11-1.0.jar " \
-                "hdfs://jmaster:9000/test/small5040.csv " \
-                "3"
+    # working, but slow    
+    # job: str = "bin/spark-submit " \
+    #             "--class Spark_Knn " \
+    #             "--master spark://jmaster:7077 " \
+    #             "--conf spark.cores.max=30 " \
+    #             "--conf spark.executor.cores=3 " \
+    #             "--executor-memory 8g " \
+    #             "hdfs://jmaster:9000/test/spark_knn_2.11-1.0.jar " \
+    #             "hdfs://jmaster:9000/test/small5040.csv " \
+    #             "3"
                 # small336.csv
                 # small369.csv
                 # small402.csv
@@ -127,18 +127,27 @@ if __name__ == '__main__':
                 # medium6368.csv
                 # large19591.csv
                 # small4368
-    '''
     job: str = "bin/spark-submit " \
-               "--master spark://192.168.122.65:7077 " \
+               "--class KMeansApplication " \
+               "--master spark://jmaster:7077 " \
                "--conf spark.cores.max=30 " \
                "--conf spark.executor.cores=3 " \
                "--executor-memory 6g " \
-               "--name km-5g-10w-raw " \
-               "/home/spark/spark-jars/KMeans.jar " \
-               "hdfs://spark-master:9000/kmeans/5gb.csv " \
+               "--name test " \
+               "hdfs://jmaster:9000/test/kmeans_2.11-0.1.jar " \
+               "hdfs://jmaster:9000/test/data.csv " \
                "3 20 0 1"
+    # original
+    # job: str = "bin/spark-submit " \
+    #            "--master spark://192.168.122.65:7077 " \
+    #            "--conf spark.cores.max=30 " \
+    #            "--conf spark.executor.cores=3 " \
+    #            "--executor-memory 6g " \
+    #            "--name km-5g-10w-raw " \
+    #            "/home/spark/spark-jars/KMeans.jar " \
+    #            "hdfs://spark-master:9000/kmeans/5gb.csv " \
+    #            "3 20 0 1"
     # "--conf spark.default.parallelism=60 " \
     # "--conf spark.locality.wait=0 " \
-    '''
     # "--conf spark.streaming.blockInterval=400 " \
     main(job)

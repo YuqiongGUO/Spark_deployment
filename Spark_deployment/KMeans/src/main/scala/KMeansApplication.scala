@@ -23,9 +23,11 @@ object KMeansApplication {
 
     val conf = new SparkConf()
     val sc = new SparkContext(conf)
-    val textFile = sc.textFile(inputFile, minPartitions = minPartitions)
-    val dataset = textFile.map(s => Vectors.dense(s.split(" ").filter(_ != "").map(_.toDouble)))
-
+    // val textFile = sc.textFile(inputFile, minPartitions = minPartitions)
+    // val dataset = textFile.map(s => Vectors.dense(s.split(",").filter(_ != "").map(_.toDouble)))
+    val textFile = sc.textFile(inputFile, minPartitions = minPartitions).filter(r => (!(r.indexOf(',')==0 || r.indexOf(',')==r.length-1 || !r.contains(','))))
+    val dataset = textFile.map(s => Vectors.dense(s.split(',').map(_.toDouble))).cache()
+    
     val model: KMeansModel = {
       if (repartitionCount>0) {
         val dataset2 = dataset.repartition(repartitionCount)
