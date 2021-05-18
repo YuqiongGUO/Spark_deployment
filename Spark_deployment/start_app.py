@@ -132,11 +132,11 @@ if __name__ == '__main__':
                "--master spark://jmaster:7077 " \
                "--conf spark.cores.max=30 " \
                "--conf spark.executor.cores=3 " \
-               "--executor-memory 6g " \
+               "--executor-memory 8g " \
                "--name test " \
                "hdfs://jmaster:9000/test/kmeans_2.11-0.1.jar " \
-               "hdfs://jmaster:9000/test/data.csv " \
-               "3 20 0 1"
+               "hdfs://jmaster:9000/test/data8.csv " \
+               "3 20 10 10"
     # original
     # job: str = "bin/spark-submit " \
     #            "--master spark://192.168.122.65:7077 " \
