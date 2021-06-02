@@ -86,3 +86,5 @@ Spark_deployment/KMeans/target/streams/compile/scalacOptions/_global/streams/out
 Spark_deployment/KMeans/target/streams/compile/unmanagedClasspath/_global/streams/export
 Spark_deployment/KMeans/target/streams/compile/unmanagedClasspath/_global/streams/out
 Spark_deployment/KMeans/target/streams/compile/unmanagedJars/_global/streams/export
+*.csv
+*.icloud
