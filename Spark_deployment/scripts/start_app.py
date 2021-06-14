@@ -48,13 +48,13 @@ def main(job: str):
     for slave in slaves:
         file_path = "{folder_path}/slave{i}.csv".format(folder_path=folder_path, i=i)
         slave.get_connection().get(slave.get_log_path(), file_path)
-        '''array = np.genfromtxt(file_path, delimiter=',')
+        array = np.genfromtxt(file_path, delimiter=',')
         mean_cpu_usage = np.mean(array[:, 1])
         max_cpu_usage = np.max(array[:, 1])
         print("slave{}: {}, {}".format(i, mean_cpu_usage, max_cpu_usage))
         if max_cpu_usage <= 90:
             remove(file_path)
-        i += 1'''
+        i += 1
     master.get_connection().get(master.get_log_path(), "{folder_path}/master.csv".format(folder_path=folder_path,
                                                                                          i=i))
     print("The data files have been put into monitor_data/" + folder_name)
@@ -66,28 +66,34 @@ def main(job: str):
 #     #     args = args + " " + arg
 #     # job = "bin/spark-submit" + args
 
-    
-#     job: str = "bin/spark-submit --class org.apache.spark.examples.SparkPi --master local --executor-memory 2g ./examples/jars/spark-examples_2.11-2.4.5.jar 10000" 
-
 #     main(job)
 if __name__ == '__main__':
     args = " "
     # for arg in sys.argv[1:]:
     #     args = args + " " + arg
     # job = "bin/spark-submit" + args
-    job: str = "bin/spark-submit --master local --conf spark.cores.max=3 --conf spark.executor.cores=3 --executor-memory 6g --name test /root/Downloads/kmeans_2.11-0.1.jar /root/Downloads/data/iris.csv 3 20"
-    '''
+    
+
+    ## submit code for KNN   
+    # job: str = "bin/spark-submit " \
+    #             "--class Spark_Knn " \
+    #             "--master spark://jmaster:7077 " \
+    #             "--conf spark.cores.max=30 " \
+    #             "--conf spark.executor.cores=3 " \
+    #             "--executor-memory 8g " \
+    #             "hdfs://jmaster:9000/test/spark_knn_2.11-1.0.jar " \
+    #             "hdfs://jmaster:9000/test/small5250.csv " \
+    #             "3"
+
+    ## submit code for Kmean   
     job: str = "bin/spark-submit " \
-               "--master spark://192.168.122.65:7077 " \
+               "--class KMeansApplication " \
+               "--master spark://jmaster:7077 " \
                "--conf spark.cores.max=30 " \
                "--conf spark.executor.cores=3 " \
-               "--executor-memory 6g " \
-               "--name km-5g-10w-raw " \
-               "/home/spark/spark-jars/KMeans.jar " \
-               "hdfs://spark-master:9000/kmeans/5gb.csv " \
-               "3 20 0 1"
-    # "--conf spark.default.parallelism=60 " \
-    # "--conf spark.locality.wait=0 " \
-    '''
-    # "--conf spark.streaming.blockInterval=400 " \
+               "--executor-memory 8g " \
+               "--name test " \
+               "hdfs://jmaster:9000/test/kmeans_2.11-0.1.jar " \
+               "hdfs://jmaster:9000/test/data2gb.csv " \
+               "3 20 10 0"
     main(job)
